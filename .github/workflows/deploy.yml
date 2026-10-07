@@ -1,0 +1,84 @@
+name: Build resume and deploy Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install PDF dependency
+        run: pip install -r requirements.txt
+
+      - name: Build 3D site and PDF from JSON
+        run: python scripts/build.py
+
+      - name: Validate generated files
+        run: |
+          test -s dist/index.html
+          test -s dist/js/data.js
+          test -s dist/js/main.js
+          test -s dist/resume.pdf
+          test -s dist/sitemap.xml
+          test -s dist/robots.txt
+          test -s dist/assets/og-card.png
+          test -s dist/projects/index.html
+          python -m json.tool data/resume.json >/dev/null
+          python -m py_compile scripts/build.py scripts/seo.py scripts/check_site.py editor.py
+          node --check dist/js/data.js
+          node --check dist/js/main.js
+          python scripts/check_site.py
+
+      - name: Build summary
+        run: |
+          echo "### Resume build ✅" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 3D site generated from data/resume.json" >> "$GITHUB_STEP_SUMMARY"
+          echo "- PDF generated: dist/resume.pdf" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Crawlable pages + project detail pages generated" >> "$GITHUB_STEP_SUMMARY"
+          echo "- SEO assets: sitemap.xml, robots.txt, JSON-LD, Open Graph card, icons, manifest" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Live URL: https://aasoftir.github.io/resume/" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Projects: https://aasoftir.github.io/resume/projects/" >> "$GITHUB_STEP_SUMMARY"
+          echo "- PDF URL: https://aasoftir.github.io/resume/resume.pdf" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload generated PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdf
+          path: dist/resume.pdf
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,441 @@
+{
+  "meta": {
+    "name": "Alireza Mohebbi",
+    "title": "Software Developer · Web & AI-Integrated Applications · Linux",
+    "location": "Qom, Iran",
+    "availability": "Open to junior · internship · remote",
+    "email": "aasoftmohebbi@gmail.com",
+    "phone": "+98 910 012 2721",
+    "website": "https://aasoft.ir",
+    "github": "https://github.com/AASoftIR",
+    "certificates": "https://github.com/AASoftIR/certificates",
+    "language": "en"
+  },
+  "appearance": {
+    "default_theme": "midnight",
+    "pdf_theme": "midnight",
+    "show_availability": true,
+    "quality": "auto",
+    "intro": "smart",
+    "reader_default": false
+  },
+  "profile": "Computer Engineering undergraduate who builds practical web applications, Linux tooling, and AI-enabled software end to end, from data model and API to UI. Comfortable across Python, JavaScript/TypeScript, PHP and SQL, with shipped projects in Flask and Next.js and a native Rust/GTK4 desktop app in progress. Uses LLMs as an engineering accelerator for research, debugging, test generation and review, while validating every generated change and owning the final implementation. Looking for a junior, internship or remote role where I can grow on a strong engineering team.",
+  "projects": [
+    {
+      "id": "ai-exam-generator",
+      "title": "AI Exam Generator",
+      "status": "Shipped",
+      "status_kind": "ok",
+      "repo": "https://github.com/AASoftIR",
+      "stack": [
+        "Python",
+        "Flask",
+        "SQLite",
+        "LLM APIs"
+      ],
+      "bullets": [
+        "Turns PDF/text study material into multiple-choice exams via LLM APIs, with background generation so the UI stays responsive.",
+        "Built bilingual Persian/English (RTL) UI, automatic grading, exam export and an admin workflow for managing content."
+      ]
+    },
+    {
+      "id": "flowtransfer",
+      "title": "FlowTransfer · Linux Download Manager",
+      "status": "In development",
+      "status_kind": "dev",
+      "repo": "https://github.com/AASoftIR",
+      "stack": [
+        "Rust",
+        "GTK4/libadwaita",
+        "SQLite",
+        "yt-dlp",
+        "FFmpeg",
+        "CI"
+      ],
+      "bullets": [
+        "Native Linux desktop app with segmented downloads, queues, scheduling, proxy support and SQLite persistence.",
+        "Integrates yt-dlp/FFmpeg media workflows and browser hand-off; currently hardening and verifying it as a deep engineering case study."
+      ]
+    },
+    {
+      "id": "persian-voice-assistant",
+      "title": "Persian Voice Document Assistant",
+      "status": "B.Sc. final project",
+      "status_kind": "thesis",
+      "repo": "",
+      "stack": [
+        "Python",
+        "n8n",
+        "RAG",
+        "Voice pipeline"
+      ],
+      "bullets": [
+        "Voice question-answering over structured Persian PDFs using retrieval-augmented generation orchestrated with n8n workflows."
+      ]
+    },
+    {
+      "id": "persian-poetry",
+      "title": "Persian Poetry",
+      "status": "Deployed",
+      "status_kind": "ok",
+      "repo": "https://github.com/AASoftIR",
+      "stack": [
+        "Next.js",
+        "Tailwind CSS"
+      ],
+      "bullets": [
+        "Persian-content web app with poem search, random discovery and a responsive, RTL-aware interface."
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Freelance Web Developer",
+      "organization": "",
+      "period": "2022 – Present",
+      "bullets": [
+        "Deliver responsive websites, web applications, REST APIs and automation for clients and personal products.",
+        "Maintain work publicly on GitHub, from first commit to deployment."
+      ]
+    },
+    {
+      "role": "Front-End Developer",
+      "organization": "TechBridge Inc",
+      "period": "2024",
+      "bullets": []
+    },
+    {
+      "role": "Web Developer & Editor",
+      "organization": "Digital Marketing Company, Qom",
+      "period": "2023 – 2024",
+      "bullets": []
+    }
+  ],
+  "skills": [
+    {
+      "group": "Languages",
+      "items": [
+        "Python",
+        "JavaScript",
+        "TypeScript",
+        "PHP",
+        "SQL",
+        "HTML/CSS",
+        "Rust"
+      ]
+    },
+    {
+      "group": "Web",
+      "items": [
+        "Flask",
+        "Django",
+        "Node.js",
+        "Express",
+        "React",
+        "Next.js",
+        "Laravel",
+        "REST APIs",
+        "Tailwind"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "SQLite",
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB (exposure)"
+      ]
+    },
+    {
+      "group": "AI & Automation",
+      "items": [
+        "LLM APIs",
+        "OpenAI-compatible",
+        "RAG",
+        "Structured outputs",
+        "n8n",
+        "AI-assisted testing"
+      ]
+    },
+    {
+      "group": "Engineering",
+      "items": [
+        "Linux",
+        "Git/GitHub",
+        "GitHub Actions",
+        "CI/CD",
+        "Testing",
+        "Debugging"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc. Computer Engineering",
+      "school": "Payam Noor University, Qom",
+      "period": "Undergraduate · in progress"
+    }
+  ],
+  "learning": [
+    "Harvard CS50",
+    "freeCodeCamp · JS Algorithms & Data Structures",
+    "freeCodeCamp · Responsive Web Design",
+    "AI Engineer",
+    "LangChain.js"
+  ],
+  "languages": [
+    {
+      "name": "Persian",
+      "level": 5
+    },
+    {
+      "name": "English",
+      "level": 4
+    },
+    {
+      "name": "French",
+      "level": 1
+    }
+  ],
+  "motto": "If I can't explain it, debug it and test it, I don't ship it.",
+  "layout": {
+    "page": {
+      "width": 924,
+      "height": 1307,
+      "scale": 1.2
+    },
+    "layers": {
+      "header": {
+        "box": {
+          "x": 0,
+          "y": 0,
+          "w": 924,
+          "h": 224
+        },
+        "explode": {
+          "z": 430,
+          "dy": 120,
+          "rx": -0.08,
+          "ry": 0.1
+        }
+      },
+      "profile": {
+        "box": {
+          "x": 49,
+          "y": 240,
+          "w": 535,
+          "h": 218
+        },
+        "explode": {
+          "z": 250,
+          "dx": -60,
+          "ry": 0.16,
+          "rx": 0.02
+        }
+      },
+      "projects-title": {
+        "box": {
+          "x": 49,
+          "y": 462,
+          "w": 535,
+          "h": 44
+        },
+        "explode": {
+          "z": 360,
+          "dx": -120,
+          "dy": 40,
+          "ry": 0.2
+        }
+      },
+      "project-0": {
+        "box": {
+          "x": 49,
+          "y": 508,
+          "w": 535,
+          "h": 134
+        },
+        "explode": {
+          "z": 190,
+          "dx": -170,
+          "dy": 30,
+          "ry": 0.22,
+          "rz": -0.01
+        }
+      },
+      "project-1": {
+        "box": {
+          "x": 49,
+          "y": 644,
+          "w": 535,
+          "h": 134
+        },
+        "explode": {
+          "z": 320,
+          "dx": -230,
+          "dy": 0,
+          "ry": 0.18,
+          "rz": 0.012
+        }
+      },
+      "project-2": {
+        "box": {
+          "x": 49,
+          "y": 780,
+          "w": 535,
+          "h": 92
+        },
+        "explode": {
+          "z": 150,
+          "dx": -170,
+          "dy": -30,
+          "ry": 0.24,
+          "rz": -0.012
+        }
+      },
+      "project-3": {
+        "box": {
+          "x": 49,
+          "y": 874,
+          "w": 535,
+          "h": 94
+        },
+        "explode": {
+          "z": 280,
+          "dx": -210,
+          "dy": -60,
+          "ry": 0.2,
+          "rz": 0.01
+        }
+      },
+      "experience": {
+        "box": {
+          "x": 49,
+          "y": 972,
+          "w": 535,
+          "h": 206
+        },
+        "explode": {
+          "z": 210,
+          "dx": -110,
+          "dy": -110,
+          "ry": 0.15,
+          "rx": 0.04
+        }
+      },
+      "motto": {
+        "box": {
+          "x": 61,
+          "y": 1186,
+          "w": 511,
+          "h": 56
+        },
+        "explode": {
+          "z": 470,
+          "dx": -60,
+          "dy": -170,
+          "ry": 0.12,
+          "rx": 0.06
+        }
+      },
+      "skills": {
+        "box": {
+          "x": 596,
+          "y": 240,
+          "w": 282,
+          "h": 532
+        },
+        "explode": {
+          "z": 300,
+          "dx": 180,
+          "dy": 40,
+          "ry": -0.06,
+          "rz": 0.01
+        }
+      },
+      "education": {
+        "box": {
+          "x": 596,
+          "y": 778,
+          "w": 282,
+          "h": 110
+        },
+        "explode": {
+          "z": 160,
+          "dx": 250,
+          "dy": -10,
+          "ry": -0.1,
+          "rz": -0.01
+        }
+      },
+      "learning": {
+        "box": {
+          "x": 596,
+          "y": 892,
+          "w": 282,
+          "h": 232
+        },
+        "explode": {
+          "z": 260,
+          "dx": 210,
+          "dy": -50,
+          "ry": -0.04,
+          "rz": 0.012
+        }
+      },
+      "languages": {
+        "box": {
+          "x": 596,
+          "y": 1128,
+          "w": 282,
+          "h": 120
+        },
+        "explode": {
+          "z": 380,
+          "dx": 160,
+          "dy": -120,
+          "ry": -0.08,
+          "rx": 0.05
+        }
+      },
+      "footer": {
+        "box": {
+          "x": 49,
+          "y": 1252,
+          "w": 826,
+          "h": 42
+        },
+        "explode": {
+          "z": -140,
+          "dy": -160,
+          "rx": 0.1
+        }
+      }
+    }
+  },
+  "seo": {
+    "site_url": "https://aasoftir.github.io/resume",
+    "site_name": "Alireza Mohebbi · Software Developer",
+    "description": "Alireza Mohebbi is a software developer building web applications, AI-integrated tools, Linux software and practical automation.",
+    "locale": "en_US",
+    "indexing": true,
+    "keywords": [
+      "Alireza Mohebbi",
+      "AASoftIR",
+      "software developer",
+      "web developer",
+      "Python developer",
+      "JavaScript developer",
+      "AI engineer",
+      "RAG",
+      "Linux developer",
+      "Flask",
+      "Next.js",
+      "n8n",
+      "portfolio",
+      "resume"
+    ],
+    "google_site_verification": "",
+    "bing_site_verification": ""
+  }
+}

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Alireza Mohebbi · Developer Universe</title>
+  <meta name="description" content="Explore Alireza Mohebbi's interactive 3D resume: web, AI-integrated applications, Linux, projects, skills and experience." />
+  <meta name="theme-color" content="#0b1120" />
+  <meta property="og:title" content="Alireza Mohebbi · Developer Universe" />
+  <meta property="og:description" content="Software Developer · Web & AI-Integrated Applications · Linux" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='10' y='42' font-family='monospace' font-size='30' fill='%2322d3ee'%3E$_%3C/text%3E%3C/svg%3E" />
+
+
+  <link rel="preload" href="assets/fonts/Inter.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/SpaceGrotesk.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/JetBrainsMono.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three/three.module.min.js",
+        "three/addons/": "./vendor/three/addons/"
+      }
+    }
+  </script>
+</head>
+<body class="is-loading">
+  <div id="stage" aria-label="3D resume scene"></div>
+
+  <!-- loader: parses the PDF into layers -->
+  <div id="loader" role="status" aria-live="polite">
+    <div class="term">
+      <div class="term-bar"><i></i><i></i><i></i><span>~/alireza</span></div>
+      <pre id="log"></pre>
+      <div class="meter"><span id="meter"></span></div><button id="skipIntro" class="skip-intro">skip intro ↵</button>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <header class="brand" aria-label="Site identity">
+    <span class="prompt">~/alireza $</span> <span class="cmd">explore --resume</span>
+    <span class="availability"><i></i> open to junior · internship · remote</span>
+  </header>
+
+  <div class="utility" aria-label="Experience controls">
+    <button id="btnCommand" class="key-button" title="Command palette (Ctrl/⌘ K)"><span>⌕</span> Jump <kbd>⌘K</kbd></button>
+    <button id="btnTheme" class="key-button" aria-haspopup="true" aria-expanded="false"><span class="theme-dot"></span> Theme</button>
+    <button id="btnQuality" class="key-button" title="Rendering quality"><span>⚡</span> Auto</button>
+    <button id="btnReader" class="key-button" aria-pressed="false" title="Recruiter / reader mode (D)"><span>▤</span> Read</button>
+    <details class="pages-menu">
+      <summary class="key-button" title="Crawlable resume pages"><span>☷</span> Pages</summary>
+      <nav aria-label="Resume pages">
+        <a href="about/">About</a><a href="projects/">Projects</a><a href="experience/">Experience</a><a href="skills/">Skills</a><a href="education/">Education</a><a href="contact/">Contact</a><a href="cv/">PDF page</a>
+      </nav>
+    </details>
+    <button id="btnShare" class="key-button" title="Share this view"><span>↗</span> Share</button>
+    <button id="btnCalm" class="key-button" aria-pressed="false" title="Reduce scene decoration">Calm</button>
+  </div>
+
+  <div id="themePanel" class="theme-panel" aria-label="Choose a theme" hidden>
+    <div class="theme-title"><span>scene.theme</span><small>saved on this device</small></div>
+    <button data-theme-choice="midnight"><i></i><span>Midnight</span><small>cyan / violet</small></button>
+    <button data-theme-choice="aurora"><i></i><span>Aurora</span><small>mint / purple</small></button>
+    <button data-theme-choice="ember"><i></i><span>Ember</span><small>rose / amber</small></button>
+    <button data-theme-choice="matrix"><i></i><span>Matrix</span><small>terminal green</small></button>
+    <button data-theme-choice="mono"><i></i><span>Mono</span><small>graphite / silver</small></button>
+    <button data-theme-choice="ocean"><i></i><span>Ocean</span><small>blue / teal</small></button>
+    <button data-theme-choice="synthwave"><i></i><span>Synthwave</span><small>pink / cyan</small></button>
+    <button data-theme-choice="solar"><i></i><span>Solar</span><small>amber / red</small></button>
+  </div>
+
+  <nav class="layers" aria-label="Resume layers">
+    <div class="layers-title">layers</div>
+    <ol id="layerList"></ol>
+  </nav>
+
+  <div class="caption" id="caption" aria-live="polite"></div>
+
+  <div class="dock" role="toolbar" aria-label="View controls">
+    <button id="btnPrev" title="Previous layer (←)" aria-label="Previous layer">←</button>
+    <button id="btnOverview" title="Overview (Esc)">Overview</button>
+    <button id="btnNext" title="Next layer (→)" aria-label="Next layer">→</button>
+    <span class="sep"></span>
+    <button id="btnExplode" title="Assemble / explode (E)">Assemble</button>
+    <button id="btnTour" title="Guided tour (T)">Tour</button>
+    <button id="btnSurprise" title="Surprise me (S)">✦ Explore</button>
+    <a id="btnPdf" href="assets/Alireza_Mohebbi_Resume.pdf" download title="Download the PDF">PDF ↓</a>
+  </div>
+
+  <div class="hint" id="hint">
+    <span><b>drag</b> orbit</span><span><b>scroll</b> zoom</span><span><b>click</b> dive in</span><span><b>/</b> commands</span>
+  </div>
+
+  <div class="scene-status" aria-hidden="true"><span id="sceneMode">EXPLODED</span><i></i><span id="visitedLabel">0 / 14 DISCOVERED</span><i></i><span id="qualityLabel">AUTO</span></div>
+
+  <div id="commandPalette" class="command-palette" hidden>
+    <div class="command-dialog" role="dialog" aria-modal="true" aria-label="Jump anywhere or run a command">
+      <label class="command-search">
+        <span>&gt;_</span>
+        <input id="commandInput" type="search" autocomplete="off" spellcheck="false" placeholder="Jump to a layer or run a command…" />
+        <kbd>esc</kbd>
+      </label>
+      <div id="commandResults" class="command-results" role="listbox"></div>
+      <div class="command-foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> run</span><span>try “theme” or “projects”</span></div>
+    </div>
+  </div>
+
+
+  <section id="readerMode" class="reader-mode" hidden aria-label="Readable resume">
+    <div class="reader-top"><div><span class="reader-kicker">RECRUITER VIEW</span><strong id="readerName">Resume</strong></div><div class="reader-actions"><button id="readerShare">Share</button><a href="projects/">Pages</a><a href="resume.pdf" target="_blank">PDF ↗</a><button id="readerClose">Back to 3D</button></div></div>
+    <div id="readerContent" class="reader-content"></div>
+  </section>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <noscript><div class="noscript"><p>The 3D experience needs JavaScript, but the resume content is available as normal pages.</p><p><a href="about/">About</a> · <a href="projects/">Projects</a> · <a href="experience/">Experience</a> · <a href="skills/">Skills</a> · <a href="contact/">Contact</a> · <a href="resume.pdf">PDF</a></p></div></noscript>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
